@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:desktop_app/widgets/my_drawer.dart';
+import 'package:desktop_app/widgets/plates_screen_widgets/plates_screen_body.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/search_box.dart';
@@ -120,20 +121,8 @@ class _PlatesScreen extends State<PlatesScreen> {
         title: const Text('Plakalar'),
       ),
       drawer: MyDrawer(),
-      body: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          SizedBox(
-            height: 50,
-            child: SearchBox(),
-          ),
-          SizedBox(
-            width: double.infinity,
-            height: MediaQuery.of(context).size.height / 10 * 7,
-            child: SingleChildScrollView(
-                scrollDirection: Axis.vertical, child: dataTable),
-          ),
-        ],
+      body: PlatesScreenBody(
+        dataTable: dataTable,
       ),
     );
   }

@@ -32,6 +32,20 @@ class _MyDrawer extends State<MyDrawer> {
                   context, 'cars-screen', (route) => false);
             },
           ),
+          ListTile(
+            title: const Text('Personeller'),
+            onTap: () {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, 'person-screen', (route) => false);
+            },
+          ),
+          ListTile(
+            title: const Text('Araç Kirala'),
+            onTap: () {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, 'contract-screen', (route) => false);
+            },
+          ),
         ],
       ),
     );

@@ -37,6 +37,13 @@ class _PlatesScreenBody extends State<PlatesScreenBody> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ElevatedButton(
+                      child: Text('Tüm Plakalar'),
+                      onPressed: () {},
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
                       child: Text('Kiralık Plakalar'),
                       onPressed: () {},
                     ),

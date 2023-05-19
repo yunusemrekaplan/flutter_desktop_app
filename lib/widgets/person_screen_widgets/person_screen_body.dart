@@ -4,19 +4,18 @@ import 'package:flutter/material.dart';
 
 import '../search_box.dart';
 
-class CarsScreenBody extends StatefulWidget {
+class PersonScreenBody extends StatefulWidget {
   late DataTable dataTable;
-
-  CarsScreenBody({super.key, required this.dataTable});
+  PersonScreenBody({super.key, required this.dataTable});
 
   @override
-  State<StatefulWidget> createState() => _CarsScreenBody(dataTable: dataTable);
+  State<StatefulWidget> createState() =>
+      _PersonScreenBody(dataTable: dataTable);
 }
 
-class _CarsScreenBody extends State<CarsScreenBody> {
+class _PersonScreenBody extends State<PersonScreenBody> {
   late DataTable dataTable;
-
-  _CarsScreenBody({required this.dataTable});
+  _PersonScreenBody({required this.dataTable});
 
   @override
   Widget build(BuildContext context) {
@@ -30,32 +29,6 @@ class _CarsScreenBody extends State<CarsScreenBody> {
             children: [
               SizedBox(
                 child: SearchBox(),
-              ),
-              Expanded(child: Container()),
-              SizedBox(
-                child: Row(mainAxisSize: MainAxisSize.max, children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ElevatedButton(
-                      child: Text('Tüm Araçlar'),
-                      onPressed: () {},
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ElevatedButton(
-                      child: Text('Kiralık Araçlar'),
-                      onPressed: () {},
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ElevatedButton(
-                      child: Text('Kiradaki Araçlar'),
-                      onPressed: () {},
-                    ),
-                  ),
-                ]),
               ),
             ],
           ),

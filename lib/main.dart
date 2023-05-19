@@ -1,8 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:desktop_app/screens/cars_screen.dart';
+import 'package:desktop_app/screens/contract_screen.dart';
 import 'package:desktop_app/screens/login_screen.dart';
 import 'package:desktop_app/screens/menu_screen.dart';
+import 'package:desktop_app/screens/person_screen.dart';
 import 'package:desktop_app/screens/plates_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -26,8 +28,10 @@ class DesktopApp extends StatelessWidget {
         'menu': (BuildContext context) => MenuScreen(),
         'cars-screen': (BuildContext context) => CarsScreen(),
         'plates-screen': (BuildContext context) => PlatesScreen(),
+        'person-screen': (BuildContext context) => PersonScreen(),
+        'contract-screen': (BuildContext context) => ContractScreen(),
       },
-      initialRoute: 'cars-screen',
+      initialRoute: 'contract-screen',
     );
   }
 }

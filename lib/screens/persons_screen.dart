@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 
 import '../widgets/my_drawer.dart';
 
-class PersonScreen extends StatefulWidget {
-  const PersonScreen({super.key});
+class PersonsScreen extends StatefulWidget {
+  const PersonsScreen({super.key});
 
   @override
-  State<StatefulWidget> createState() => _PersonScreen();
+  State<StatefulWidget> createState() => _PersonsScreen();
 }
 
-class _PersonScreen extends State<PersonScreen> {
+class _PersonsScreen extends State<PersonsScreen> {
   DataTable dataTable = DataTable(
     columns: [
       DataColumn(label: Text('Ad')),

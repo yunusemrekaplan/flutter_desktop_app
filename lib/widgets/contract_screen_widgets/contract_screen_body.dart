@@ -277,7 +277,7 @@ class _ContractScreenBodyState extends State<ContractScreenBody> {
               padding: const EdgeInsets.all(8.0),
               child: Container(
                 width: 616.0,
-                height: 300,
+                height: 250,
                 color: Colors.green,
                 child: Column(
                   children: [

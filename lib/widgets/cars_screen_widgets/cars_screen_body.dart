@@ -10,13 +10,14 @@ class CarsScreenBody extends StatefulWidget {
   CarsScreenBody({super.key, required this.dataTable});
 
   @override
-  State<StatefulWidget> createState() => _CarsScreenBody(dataTable: dataTable);
+  State<StatefulWidget> createState() =>
+      _CarsScreenBodyState(dataTable: dataTable);
 }
 
-class _CarsScreenBody extends State<CarsScreenBody> {
+class _CarsScreenBodyState extends State<CarsScreenBody> {
   late DataTable dataTable;
 
-  _CarsScreenBody({required this.dataTable});
+  _CarsScreenBodyState({required this.dataTable});
 
   @override
   Widget build(BuildContext context) {

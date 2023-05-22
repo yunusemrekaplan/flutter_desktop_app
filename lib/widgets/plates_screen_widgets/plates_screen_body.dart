@@ -1,7 +1,6 @@
 // ignore_for_file: no_logic_in_create_state, must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../search_box.dart';
 
@@ -11,12 +10,12 @@ class PlatesScreenBody extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() =>
-      _PlatesScreenBody(dataTable: dataTable);
+      _PlatesScreenBodyState(dataTable: dataTable);
 }
 
-class _PlatesScreenBody extends State<PlatesScreenBody> {
+class _PlatesScreenBodyState extends State<PlatesScreenBody> {
   late DataTable dataTable;
-  _PlatesScreenBody({required this.dataTable});
+  _PlatesScreenBodyState({required this.dataTable});
 
   @override
   Widget build(BuildContext context) {

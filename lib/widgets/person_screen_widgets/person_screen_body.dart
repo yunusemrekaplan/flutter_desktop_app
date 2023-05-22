@@ -10,12 +10,12 @@ class PersonScreenBody extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() =>
-      _PersonScreenBody(dataTable: dataTable);
+      _PersonScreenBodyState(dataTable: dataTable);
 }
 
-class _PersonScreenBody extends State<PersonScreenBody> {
+class _PersonScreenBodyState extends State<PersonScreenBody> {
   late DataTable dataTable;
-  _PersonScreenBody({required this.dataTable});
+  _PersonScreenBodyState({required this.dataTable});
 
   @override
   Widget build(BuildContext context) {

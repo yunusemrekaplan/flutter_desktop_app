@@ -3,6 +3,8 @@
 import 'package:desktop_app/widgets/my_drawer.dart';
 import 'package:flutter/material.dart';
 
+import '../widgets/input_row.dart';
+
 class ContractScreen extends StatefulWidget {
   const ContractScreen({super.key});
 
@@ -11,6 +13,7 @@ class ContractScreen extends StatefulWidget {
 }
 
 class _ContractScreen extends State<ContractScreen> {
+  TextEditingController dateCtl = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,49 +21,67 @@ class _ContractScreen extends State<ContractScreen> {
         title: const Text('Araç Kirala'),
       ),
       drawer: MyDrawer(),
-      body: Column(
+      body: Row(
         children: [
-          SizedBox(
-            width: double.infinity,
-            height: 50,
-            child: Container(
-              color: Colors.blueGrey,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'Ad: ',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18.0,
+          Container(
+            width: 300,
+            color: Colors.green,
+            child: Column(
+              children: [
+                InputRow(label: 'Adı: '),
+                InputRow(label: 'Soyad: '),
+                InputRow(label: 'T.C: '),
+                InputRow(label: 'Ehliyet No: '),
+                SizedBox(
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Text(
+                          'Ehliyet Tarihi: ',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 18.0,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(0.0),
-                    child: Container(
-                      decoration: BoxDecoration(border: Border.all()),
-                      width: 160,
-                      height: 27,
-                      child: const Center(
-                        child: SizedBox(
-                          height: 30,
-                          child: TextField(
-                            textAlign: TextAlign.start,
-                            decoration: InputDecoration(
-                              hintText: 'Bir şeyler yazın...',
-                            ),
-                            style: TextStyle(
-                              color: Colors.white,
+                      Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Container(
+                          decoration: BoxDecoration(border: Border.all()),
+                          width: 160,
+                          height: 27,
+                          child: Center(
+                            child: SizedBox(
+                              height: 30,
+                              child: TextFormField(
+                                controller: dateCtl,
+                                decoration: InputDecoration(
+                                  hintText: "Ex. Insert your dob",
+                                ),
+                                onTap: () async {
+                                  DateTime date = DateTime(1900);
+                                  FocusScope.of(context)
+                                      .requestFocus(FocusNode());
+
+                                  date = (await showDatePicker(
+                                      context: context,
+                                      initialDate: DateTime.now(),
+                                      firstDate: DateTime(1900),
+                                      lastDate: DateTime(2100)))!;
+
+                                  dateCtl.text = date.toString().substring(
+                                      0, 10); //date.toIso8601String();
+                                },
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ],

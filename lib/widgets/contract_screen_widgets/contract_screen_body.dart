@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:desktop_app/widgets/date_picker_row.dart';
 import 'package:flutter/material.dart';
 
 import '../../controller.dart';
@@ -17,7 +18,13 @@ class _ContractScreenBodyState extends State<ContractScreenBody> {
 
   String dropdownValue = '34 AA 0000';
 
-  TextEditingController dateCtl = TextEditingController();
+  TextEditingController dateEntry = TextEditingController();
+  TextEditingController dateExit = TextEditingController();
+  TextEditingController dateLicense = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController surnameController = TextEditingController();
+  TextEditingController tcController = TextEditingController();
+  TextEditingController licenseNoController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -28,148 +35,107 @@ class _ContractScreenBodyState extends State<ContractScreenBody> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
-                width: 300,
-                height: 300,
+                width: (MediaQuery.of(context).size.width / 10 * 3) < 300
+                    ? 300
+                    : (MediaQuery.of(context).size.width / 10 * 3),
+                height: 320,
                 color: Colors.green,
-                child: Column(
-                  children: [
-                    Text(
-                      'Müşteri Bilgileri',
-                      style: TextStyle(
-                        fontSize: 25,
+                child: Center(
+                  child: Column(
+                    //mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Text(
+                        'Müşteri Bilgileri',
+                        style: TextStyle(
+                          fontSize: 25,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 20),
-                    InputRow(label: 'Adı: '),
-                    InputRow(label: 'Soyad: '),
-                    InputRow(label: 'T.C: '),
-                    InputRow(label: 'Ehliyet No: '),
-                    SizedBox(
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
-                            child: Text(
-                              'Ehliyet Tarihi: ',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18.0,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Container(
-                              decoration: BoxDecoration(border: Border.all()),
-                              width: 160,
-                              height: 27,
-                              child: Center(
-                                child: SizedBox(
-                                  height: 30,
-                                  child: TextFormField(
-                                    controller: dateCtl,
-                                    decoration: InputDecoration(
-                                      hintText: DateTime.now()
-                                          .toString()
-                                          .substring(0, 10),
-                                    ),
-                                    onTap: () async {
-                                      DateTime date = DateTime(1900);
-                                      FocusScope.of(context)
-                                          .requestFocus(FocusNode());
-
-                                      date = (await showDatePicker(
-                                          context: context,
-                                          initialDate: DateTime.now(),
-                                          firstDate: DateTime(1900),
-                                          lastDate: DateTime(2100)))!;
-
-                                      dateCtl.text = date.toString().substring(
-                                          0, 10); //date.toIso8601String();
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+                      const SizedBox(height: 20),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: InputRow(
+                          label: 'Adı: ',
+                          controller: nameController,
+                        ),
                       ),
-                    ),
-                  ],
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: InputRow(
+                          label: 'Soyad: ',
+                          controller: surnameController,
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: InputRow(
+                          label: 'T.C: ',
+                          controller: tcController,
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: InputRow(
+                          label: 'Ehliyet No: ',
+                          controller: licenseNoController,
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: DatePickerRow(
+                          label: 'Ehliyet Tarihi',
+                          dateController: dateLicense,
+                          containerWidth: 160,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            dataController.customerName = nameController.text;
+                            dataController.customerSurname =
+                                surnameController.text;
+                            dataController.tcNo = tcController.text;
+                            dataController.licenseNo = licenseNoController.text;
+                            dataController.licenseDate =
+                                DateTime.tryParse(dateLicense.text)!;
+                            dataController.plate = dropdownValue;
+                            dataController.exitDate =
+                                DateTime.tryParse(dateExit.text)!;
+                            dataController.entryDate =
+                                DateTime.tryParse(dateEntry.text)!;
+                          });
+                        },
+                        child: const Text('Kaydet'),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
-                width: 300,
-                height: 300,
+                width: MediaQuery.of(context).size.width / 10 * 7 - 40,
+                height: 320,
                 color: Colors.green,
-                child: Column(
-                  children: [
-                    Text(
-                      'Araç Bilgileri',
-                      style: TextStyle(
-                        fontSize: 25,
+                child: Center(
+                  child: Column(
+                    //mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Text(
+                        'Araç Bilgileri',
+                        style: TextStyle(
+                          fontSize: 25,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 20),
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: Text(
-                            'Plaka: ',
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 18.0,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: SizedBox(
-                            width: 150,
-                            height: 50,
-                            child: Center(
-                              child: SizedBox(
-                                  height: 50,
-                                  child: DropdownButtonFormField(
-                                    value: dropdownValue,
-                                    icon: const Icon(Icons.arrow_downward),
-                                    decoration: InputDecoration(
-                                      border: OutlineInputBorder(),
-                                    ),
-                                    onChanged: (String? newValue) {
-                                      setState(() {
-                                        dropdownValue = newValue!;
-                                      });
-                                    },
-                                    items: <String>[
-                                      '34 AA 0000',
-                                      '34 BB 0000',
-                                      '34 CC 0000',
-                                      '34 DD 0000',
-                                    ].map<DropdownMenuItem<String>>(
-                                        (String value) {
-                                      return DropdownMenuItem<String>(
-                                        value: value,
-                                        child: Text(value),
-                                      );
-                                    }).toList(),
-                                  )),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      child: Row(
+                      const SizedBox(height: 20),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
+                          const Padding(
+                            padding: EdgeInsets.only(left: 8.0),
                             child: Text(
-                              'Çıkış Tarihi: ',
+                              'Plaka: ',
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 18.0,
@@ -177,95 +143,54 @@ class _ContractScreenBodyState extends State<ContractScreenBody> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Container(
-                              decoration: BoxDecoration(border: Border.all()),
-                              width: 110,
-                              height: 27,
+                            padding: const EdgeInsets.all(8.0),
+                            child: SizedBox(
+                              width: 150,
+                              height: 50,
                               child: Center(
                                 child: SizedBox(
-                                  height: 30,
-                                  child: TextFormField(
-                                    controller: dateCtl,
-                                    decoration: InputDecoration(
-                                      hintText: DateTime.now()
-                                          .toString()
-                                          .substring(0, 10),
-                                    ),
-                                    onTap: () async {
-                                      DateTime date = DateTime(1900);
-                                      FocusScope.of(context)
-                                          .requestFocus(FocusNode());
-
-                                      date = (await showDatePicker(
-                                          context: context,
-                                          initialDate: DateTime.now(),
-                                          firstDate: DateTime(1900),
-                                          lastDate: DateTime(2100)))!;
-
-                                      dateCtl.text = date.toString().substring(
-                                          0, 10); //date.toIso8601String();
-                                    },
-                                  ),
-                                ),
+                                    height: 50,
+                                    child: DropdownButtonFormField(
+                                      value: dropdownValue,
+                                      icon: const Icon(Icons.arrow_downward),
+                                      decoration: const InputDecoration(
+                                        border: OutlineInputBorder(),
+                                      ),
+                                      onChanged: (String? newValue) {
+                                        setState(() {
+                                          dropdownValue = newValue!;
+                                        });
+                                      },
+                                      items: <String>[
+                                        '34 AA 0000',
+                                        '34 BB 0000',
+                                        '34 CC 0000',
+                                        '34 DD 0000',
+                                      ].map<DropdownMenuItem<String>>(
+                                          (String value) {
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
+                                    )),
                               ),
                             ),
                           ),
                         ],
                       ),
-                    ),
-                    SizedBox(
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
-                            child: Text(
-                              'Giriş Tarihi: ',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18.0,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Container(
-                              decoration: BoxDecoration(border: Border.all()),
-                              width: 110,
-                              height: 27,
-                              child: Center(
-                                child: SizedBox(
-                                  height: 30,
-                                  child: TextFormField(
-                                    controller: dateCtl,
-                                    decoration: InputDecoration(
-                                      hintText: DateTime.now()
-                                          .toString()
-                                          .substring(0, 10),
-                                    ),
-                                    onTap: () async {
-                                      DateTime date = DateTime(1900);
-                                      FocusScope.of(context)
-                                          .requestFocus(FocusNode());
-
-                                      date = (await showDatePicker(
-                                          context: context,
-                                          initialDate: DateTime.now(),
-                                          firstDate: DateTime(1900),
-                                          lastDate: DateTime(2100)))!;
-
-                                      dateCtl.text = date.toString().substring(
-                                          0, 10); //date.toIso8601String();
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+                      DatePickerRow(
+                        label: 'Çıkış Tarihi: ',
+                        dateController: dateExit,
+                        containerWidth: 110.0,
                       ),
-                    ),
-                  ],
+                      DatePickerRow(
+                        label: 'Giriş Tarihi: ',
+                        dateController: dateEntry,
+                        containerWidth: 110.0,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -276,35 +201,76 @@ class _ContractScreenBodyState extends State<ContractScreenBody> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
-                width: 616.0,
-                height: 250,
+                width: MediaQuery.of(context).size.width - 25,
+                height: MediaQuery.of(context).size.height - 420,
                 color: Colors.green,
                 child: Column(
                   children: [
-                    Text(
+                    const Text(
                       'Sözleşme Bilgileri',
                       style: TextStyle(
                         fontSize: 25,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
-                    Row(
-                      children: [
-                        Text(
-                          'Müşteri: ',
-                          style: TextStyle(
-                            fontSize: 20.0,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          const Text(
+                            'Müşteri: ',
+                            style: TextStyle(
+                              fontSize: 20.0,
+                            ),
                           ),
-                        ),
-                        Text(
-                          '${dataController.customerName} ${dataController.customerSurname}',
-                          style: TextStyle(
-                            fontSize: 20.0,
+                          Text(
+                            '${dataController.customerName} ${dataController.customerSurname}',
+                            style: const TextStyle(
+                              fontSize: 20.0,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          const Text(
+                            'Araç: ',
+                            style: TextStyle(
+                              fontSize: 20.0,
+                            ),
+                          ),
+                          Text(
+                            dataController.plate,
+                            style: const TextStyle(
+                              fontSize: 20.0,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          const Text(
+                            'Süre: ',
+                            style: TextStyle(
+                              fontSize: 20.0,
+                            ),
+                          ),
+                          Text(
+                            '${dataController.entryDate.difference(dataController.exitDate).inDays.toString()} Gün',
+                            style: const TextStyle(
+                              fontSize: 20.0,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),

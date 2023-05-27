@@ -39,7 +39,7 @@ class _ContractScreenBodyState extends State<ContractScreenBody> {
                     ? 300
                     : (MediaQuery.of(context).size.width / 10 * 3),
                 height: 320,
-                color: Colors.green,
+                color: Colors.white,
                 child: Center(
                   child: Column(
                     //mainAxisSize: MainAxisSize.min,
@@ -117,7 +117,7 @@ class _ContractScreenBodyState extends State<ContractScreenBody> {
               child: Container(
                 width: MediaQuery.of(context).size.width / 10 * 7 - 40,
                 height: 320,
-                color: Colors.green,
+                color: Colors.white,
                 child: Center(
                   child: Column(
                     //mainAxisSize: MainAxisSize.min,
@@ -203,7 +203,7 @@ class _ContractScreenBodyState extends State<ContractScreenBody> {
               child: Container(
                 width: MediaQuery.of(context).size.width - 25,
                 height: MediaQuery.of(context).size.height - 420,
-                color: Colors.green,
+                color: Colors.white,
                 child: Column(
                   children: [
                     const Text(

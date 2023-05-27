@@ -25,7 +25,7 @@ class DesktopApp extends StatelessWidget {
       ),
       routes: {
         '/': (BuildContext context) => LoginScreen(),
-        'menu': (BuildContext context) => MenuScreen(),
+        'menu-screen': (BuildContext context) => MenuScreen(),
         'cars-screen': (BuildContext context) => CarsScreen(),
         'plates-screen': (BuildContext context) => PlatesScreen(),
         'person-screen': (BuildContext context) => PersonsScreen(),

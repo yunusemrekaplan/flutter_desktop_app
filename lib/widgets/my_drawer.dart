@@ -13,7 +13,10 @@ class _MyDrawer extends State<MyDrawer> {
         padding: EdgeInsets.zero,
         children: <Widget>[
           IconButton(
-            onPressed: () => Navigator.pushNamed(context, 'menu'),
+            onPressed: () {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, 'menu-screen', (route) => false);
+            },
             icon: const Icon(Icons.house),
             iconSize: 40,
             alignment: Alignment.center,

@@ -31,7 +31,7 @@ class DesktopApp extends StatelessWidget {
         'person-screen': (BuildContext context) => PersonsScreen(),
         'contract-screen': (BuildContext context) => ContractScreen(),
       },
-      initialRoute: 'contract-screen',
+      initialRoute: 'menu-screen',
     );
   }
 }
